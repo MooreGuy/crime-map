@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb
+  namespace: crime-map
+  labels:
+    app: mongodb
+spec:
+  volumeClaimTemplates:
+    - metadata:
+        name: mongodb-vol
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: local-storage
+

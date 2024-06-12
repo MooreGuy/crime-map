@@ -1,6 +1,10 @@
 resources:
     - ../../base
+    - local-storage-class.yaml
+    - persistent-volume.yaml
+
 patchesStrategicMerge:
     - single-replica.yaml
     - envs.yaml
+    - use-local-storage-for-mongo.yaml
 namePrefix: dev-
