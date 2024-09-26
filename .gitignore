@@ -29,3 +29,4 @@ geocoder/maps_key.txt
 
 # Project's mongodb storage for development
 mongodb/*
+.idea
