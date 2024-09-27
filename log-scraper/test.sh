@@ -1,3 +1,4 @@
+bash ./build.sh
 kubectl delete -f ../kubernetes/reparse-logs-job.yaml
 kubectl create -f ../kubernetes/reparse-logs-job.yaml
 

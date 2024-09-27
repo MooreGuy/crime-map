@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import Table from 'react-bootstrap/Table';
 
 import App from './app';
 

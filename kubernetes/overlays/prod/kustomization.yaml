@@ -3,4 +3,5 @@ resources:
 patchesStrategicMerge:
     - multi-replica.yaml
     - envs.yaml
+    - do-block-storage.yaml
 namePrefix: prod-

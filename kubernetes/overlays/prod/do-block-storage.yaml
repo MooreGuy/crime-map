@@ -1,8 +1,8 @@
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongodb
+  namespace: crime-map
   labels:
     app: mongodb
 spec:
@@ -19,19 +19,13 @@ spec:
       containers:
         - name: mongodb
           image: "mongo"
-          ports:
-            - containerPort: 27017
-          volumeMounts:
-            - name: mongodb-vol
-              mountPath: /data/db
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
-      restartPolicy: Always
   volumeClaimTemplates:
     - metadata:
         name: mongodb-vol
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: do-block-storage

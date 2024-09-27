@@ -1,11 +1,22 @@
 import React from "react";
 import './full-page.css';
 
-import Header from './header/header.js';
-import AppleMap from './map/apple-map.js';
+import Header from './header/header';
+import AppleMap from './map/apple-map';
+import SideBar from './sidebar/sidebar';
+
+import { grommet, Grommet } from 'grommet'
+
 import './report-info.css';
 import './map.css';
 import './full-page.css';
+
+import styled from  'styled-components';
+
+const AppContainer = styled.div``
+const MapContainer = styled.div``
+
+const crimeMapTheme = grommet
 
 export default class App extends React.Component {
     constructor(props) {
@@ -28,9 +39,14 @@ export default class App extends React.Component {
     }
 
     render() {
-        return <>
-            <AppleMap ref={this.mapRef} markerColoring={this.state.markerColoring}/>
-            <Header color={AppleMap.color} setMarkerColoring={this.setMarkerColoring.bind(this)} />
-        </>
+        return <Grommet theme={crimeMapTheme}>
+            <AppContainer>
+                <Header color={AppleMap.color} setMarkerColoring={this.setMarkerColoring.bind(this)} />
+                <MapContainer>
+                    <AppleMap ref={this.mapRef} markerColoring={this.state.markerColoring}/>
+                    <SideBar></SideBar>
+                </MapContainer>
+            </AppContainer>
+        </Grommet>
     }
 }

@@ -1,6 +1,9 @@
 resources:
     - ../../base
+    - local-storage.yaml
 patchesStrategicMerge:
     - single-replica.yaml
     - envs.yaml
-namePrefix: dev-
+    - local-storage-vc-template.yaml
+    - local-dev-crime-map-backend.yaml
+#namePrefix: dev-

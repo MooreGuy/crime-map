@@ -1,10 +1,12 @@
-FROM python:3.7-buster
+FROM python:3.8-buster
 
 WORKDIR /usr/share/crime-map/
 
-COPY ./requirements.txt /usr/share/crime-map/requirements.txt
-RUN pip --no-cache-dir install -r requirements.txt
+RUN apt-get update && apt-get install -y pipenv && apt-get clean
+
+COPY ./Pipfile* /usr/share/crime-map/
+RUN pipenv install
 
 COPY ./ /usr/share/crime-map/
 
-CMD uwsgi --py-autoreload 1 --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+CMD pipenv run uwsgi --py-autoreload 1 --socket 0.0.0.0:5000 --protocol=http -w wsgi:app

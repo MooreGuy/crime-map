@@ -4,14 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pytest = "*"
-coverage = "*"
+pylint = "*"
 
 [packages]
-kafka-python = "*"
-pycurl = "*"
+pyjwt = "*"
+flask = "*"
 pymongo = "*"
-sentry-sdk = "*"
+uwsgi = "*"
+cryptography = "*"
+bson = "*"
 
 [requires]
 python_version = "3.8"

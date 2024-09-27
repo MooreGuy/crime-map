@@ -4,7 +4,51 @@ import Button from 'react-bootstrap/Button';
 
 import { createCrimeMarker } from '../crime-marker';
 
+import styled from 'styled-components';
 
+const MapKit = styled.div`
+    width: 100%;
+    @media all and (min-width: 800px) {
+        width: 50%;
+    }
+
+    height: calc(100vh - 56px);
+    position: absolute;
+`
+
+const crimeCategories = {
+    "weapon": "severe",
+    "assault": "severe",
+    "burg": "severe",
+    "theft": "severe",
+    "dui": "severe",
+    "graffiti": "severe",
+    "vandalism": "severe",
+    "sex": "severe",
+    "loitering": "medium",
+    "alcohol": "medium",
+    "suspicious": "medium",
+    "disorderly": "medium",
+    "trespassing": "medium",
+    "alarm": "info",
+    "noise": "info",
+    "animal": "info",
+    "keep": "info",
+    "deceased": "info",
+    "towed": "info",
+    "citizen": "info",
+    "public": "info",
+    "found": "info",
+    "lost": "info",
+    "assist": "info",
+    "parking": "info",
+    "traffic": "info",
+    "welfare": "info",
+    "aband": "info",
+    "muni": "info",
+    "coll": "info", // Collision
+    "9": "info",
+}
 
 export default class AppleMap extends Component {
     constructor(props) {
@@ -14,7 +58,7 @@ export default class AppleMap extends Component {
             markers: [],
             filters: {},
             coloring: null,
-            markerColoring: 'type',
+            markerColoring: 'none',
             self: self,
         };
 
@@ -39,44 +83,12 @@ export default class AppleMap extends Component {
         if (this.state.crimeMarkers) {
             this.state.coloring(this.state.crimeMarkers);
         }
-        return <div id="mapKit" ref={this.mapKitDiv}></div>
+        return <MapKit id="mapKit" ref={this.mapKitDiv}></MapKit>
 
     }
 
     colorMarkersBySeverity() {
         const items = this.state.markers;
-        const crimeCategories = {
-            "assault": "severe",
-            "burg": "severe",
-            "theft": "severe",
-            "dui": "severe",
-            "graffiti": "severe",
-            "vandalism": "severe",
-            "sex": "severe",
-            "loitering": "medium",
-            "alcohol": "medium",
-            "suspicious": "medium",
-            "disorderly": "medium",
-            "trespassing": "medium",
-            "alarm": "info",
-            "noise": "info",
-            "animal": "info",
-            "keep": "info",
-            "deceased": "info",
-            "towed": "info",
-            "citizen": "info",
-            "public": "info",
-            "found": "info",
-            "lost": "info",
-            "assist": "info",
-            "parking": "info",
-            "traffic": "info",
-            "welfare": "info",
-            "aband": "info",
-            "muni": "info",
-            "coll": "info", // Collision
-            "9": "info",
-        }
 
         const severityToColor = {
             "severe": "#dc3545",
@@ -149,7 +161,7 @@ export default class AppleMap extends Component {
             this.map.addAnnotations(crimeMarkers.map(markers => markers.marker));
         }
 
-        fetch(__API_ROOT__  + '/entries?days=6').then(function(response) {
+        fetch(__API_ROOT__  + '/entries?days=5').then(function(response) {
             return response.json();
         }).then(createMarkers);
     }

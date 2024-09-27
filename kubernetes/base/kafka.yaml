@@ -12,7 +12,6 @@ spec:
     protocol: TCP
   selector:
     app: kafka-broker
-    id: "0"
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
@@ -23,7 +22,6 @@ spec:
     metadata:
       labels:
         app: kafka-broker
-        id: "0"
     spec:
       containers:
       - name: kafka-broker
